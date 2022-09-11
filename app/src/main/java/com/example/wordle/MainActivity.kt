@@ -3,14 +3,16 @@ package com.example.wordle
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     val words = FourLetterWordList
     var wordToGuess = words.getRandomFourLetterWord()
-    val numberOfGuesses = 2
+    val numberOfGuesses = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +21,9 @@ class MainActivity : AppCompatActivity() {
         var start = 0
         var submissions = 0
 
-
         Log.d("my", wordToGuess)
+        val answerDisplay = findViewById<TextView>(R.id.answer)
+        answerDisplay.setText(wordToGuess)
 
         //grab all the editText and button
         val editText1 = findViewById<EditText>(R.id.editText1)
@@ -33,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         val editText7 = findViewById<EditText>(R.id.editText7)
         val editText8 = findViewById<EditText>(R.id.editText8)
 
+        val editText9 = findViewById<EditText>(R.id.editText9)
+        val editText10 = findViewById<EditText>(R.id.editText10)
+        val editText11 = findViewById<EditText>(R.id.editText11)
+        val editText12 = findViewById<EditText>(R.id.editText12)
+
         //add all buttons into an arraylist and disable all not needed buttons first
         val editTextList = ArrayList<EditText>()
         editTextList.add(editText1)
@@ -43,7 +51,12 @@ class MainActivity : AppCompatActivity() {
         editTextList.add(editText6)
         editTextList.add(editText7)
         editTextList.add(editText8)
+        editTextList.add(editText9)
+        editTextList.add(editText10)
+        editTextList.add(editText11)
+        editTextList.add(editText12)
 
+        //disable all the editText fields not needed yet, so 5-12
         enableEditText(editTextList, 4, editTextList.size - 1, false)
 
         val submitButton = findViewById<Button>(R.id.button)
@@ -73,6 +86,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             submissions += 1
+
+            if (submissions == 3) {
+                answerDisplay.visibility = View.VISIBLE
+            }
         }
     }
 
