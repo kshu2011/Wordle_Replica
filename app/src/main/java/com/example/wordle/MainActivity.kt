@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -78,6 +79,10 @@ class MainActivity : AppCompatActivity() {
                 // red is wrong, green is right, yellow is partial
                 val guessResult = checkGuess(usersGuess.uppercase())
                 colorChange(guessResult, editTextList, start)
+
+                if (guessResult.equals("OOOO")) {
+                    Toast.makeText(getApplicationContext(), "CORRECT!", Toast.LENGTH_SHORT).show();
+                }
 
                 start += 4 //that's where next word would start
 
