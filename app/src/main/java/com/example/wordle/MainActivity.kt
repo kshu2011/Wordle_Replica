@@ -74,24 +74,18 @@ class MainActivity : AppCompatActivity() {
                         usersGuess += editTextItem.getText().toString()
                     }
                 }
-
                 // check the users guess, see what they got right and update the color
                 // red is wrong, green is right, yellow is partial
                 val guessResult = checkGuess(usersGuess.uppercase())
                 colorChange(guessResult, editTextList, start)
-
                 if (guessResult.equals("OOOO")) {
                     Toast.makeText(getApplicationContext(), "CORRECT!", Toast.LENGTH_SHORT).show();
                 }
-
                 start += 4 //that's where next word would start
-
                 //need to enable next "guess"
                 enableEditText(editTextList, start, (start + 3), true)
             }
-
             submissions += 1
-
             if (submissions == 3) {
                 answerDisplay.visibility = View.VISIBLE
             }
