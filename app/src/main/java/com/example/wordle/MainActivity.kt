@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         enableEditText(editTextList, 4, editTextList.size - 1, false)
 
         val submitButton = findViewById<Button>(R.id.button)
+        val resetButton = findViewById<Button>(R.id.reset)
 
         submitButton.setOnClickListener {
             //this is where users input gets "submitted" so need logic to check their submission
@@ -88,6 +89,12 @@ class MainActivity : AppCompatActivity() {
             submissions += 1
             if (submissions == 3) {
                 answerDisplay.visibility = View.VISIBLE
+            }
+        }
+
+        resetButton.setOnClickListener {
+            for (editTextItem in editTextList) {
+                editTextItem.setText("")
             }
         }
     }
